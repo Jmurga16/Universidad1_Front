@@ -1,0 +1,26 @@
+
+<div>
+    
+    <mat-form-field class="example-form-field inputNombre">
+        <mat-label>Ingrese Codigo</mat-label>
+        <input matInput type="text" [formControl]="fCodAlu">
+        <button mat-button *ngIf="fCodAlu.value" matSuffix mat-icon-button aria-label="Clear">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+
+<div *ngFor="let item of listaDatos" >
+    
+    {{item.codalu}}
+    {{item.nomalu}}
+    {{item.apealu}}
+    {{item.codcur}}
+    {{item.nomcur}}
+    Nota: {{item.nota}}
+    
+    
+</div>
+
+
+<button mat-raised-button (click)="getUsuario()">Consultar</button>
