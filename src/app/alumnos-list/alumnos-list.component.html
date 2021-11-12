@@ -1,26 +1,54 @@
+<div class="container">
+    <div class="text-center">
+        <h1>UniversidadApp</h1>
+    </div>
+    <div class="text-center">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <mat-form-field class="example-form-field col-md-3">
+                <mat-label>Ingrese Codigo</mat-label>
+                <input matInput type="text" [formControl]="fCodAlu">
+                <button mat-button *ngIf="fCodAlu.value" matSuffix mat-icon-button aria-label="Clear">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <div class="col-md-1">
+                <button mat-raised-button (click)="getUsuario()" color="primary">Consultar</button>
 
-<div>
-    
-    <mat-form-field class="example-form-field inputNombre">
-        <mat-label>Ingrese Codigo</mat-label>
-        <input matInput type="text" [formControl]="fCodAlu">
-        <button mat-button *ngIf="fCodAlu.value" matSuffix mat-icon-button aria-label="Clear">
-            <mat-icon>close</mat-icon>
-        </button>
-    </mat-form-field>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <table *ngIf="listaDatos.length>0" class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Codigo Alumno</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Codigo Curso</th>
+                <th scope="col">Nombre Curso</th>
+                <th scope="col">Nota</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listaDatos">
+                <td>{{item.codalu}}</td>
+                <td>{{item.nomalu}}</td>
+                <td>{{item.apealu}}</td>
+                <td>{{item.codcur}}</td>
+                <td>{{item.nomcur}}</td>
+                <td>{{item.nota}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+    <div *ngIf="listaDatos.length>0">
+        <strong> Promedio = {{promedio}}</strong>
+    </div>
+
 </div>
-
-<div *ngFor="let item of listaDatos" >
-    
-    {{item.codalu}}
-    {{item.nomalu}}
-    {{item.apealu}}
-    {{item.codcur}}
-    {{item.nomcur}}
-    Nota: {{item.nota}}
-    
-    
-</div>
-
-
-<button mat-raised-button (click)="getUsuario()">Consultar</button>

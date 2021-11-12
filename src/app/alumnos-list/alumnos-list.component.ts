@@ -18,6 +18,8 @@ export class AlumnosListComponent implements OnInit {
   CODCUR: string = ''
   NOMCUR: string = ''
   NOTA: number = 0
+  CREDITO: number = 0
+  promedio: number = 0
 
   constructor(
     private service: ServicesService,
@@ -25,7 +27,6 @@ export class AlumnosListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
 
 
   }
@@ -68,17 +69,36 @@ export class AlumnosListComponent implements OnInit {
     this.NOMCUR = ''
     this.NOTA = 20
 
-
+    this.promediar();
 
   }
 
+  promediar() {
+    //Multiplicacion Nota * credito / sumaCreditos
+    let notaCred: number = 0
+    let sumaCred: number = 0
+    if (this.listaDatos.length > 0) {
+      for (let i = 0; i < this.listaDatos.length; i++) {
+        if (this.listaDatos[0].nota != null) {
+          notaCred = notaCred + (this.listaDatos[0].nota * this.listaDatos[0].credito)
+        }
+        sumaCred = sumaCred + this.listaDatos[0].credito
+      }
+      this.promedio = (notaCred / sumaCred);
+    }
+    else {
+      this.promedio = 0
+    }
+
+  }
 }
 
 interface Datos {
   codalu: string,
-  nomalu:string,
+  nomalu: string,
   apealu: string,
   codcur: string,
   nomcur: string,
-  nota: number
+  nota: number,
+  credito: number
 }
